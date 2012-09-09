@@ -1,128 +1,53 @@
-<!DOCTYPE html>
-<html>
-  <head>
-
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
   <link href="stylesheets/pprWars.css" media="screen" rel="stylesheet" type="text/css"/>
-  
-  <script src="socket.io/socket.io.min.js"></script>	
-									
   <link href="facebox/facebox.css" media="screen" rel="stylesheet" type="text/css"/>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-									
-									
-
-
-
-  
-<SCRIPT LANGUAGE="JavaScript">
-<!-- Begin
-var Armies = 0
-var bombs = 0
-
-var play = false
-
-function display(element) {
-	var checked = $("#playerOne input[type=checkbox]:checked").length;
-	if(checked >= 10) { 
-		$("#playerOne input[type=checkbox]").attr('disabled','disabled');
-		
-	}
-  var checked2 = $("#playerTwo input[type=checkbox]:checked").length;
-  if(checked2 >= 20) { 
-    $("#playerTwo input[type=checkbox]").attr('disabled','disabled');
-    
-  }
-	
-  function getcoords() {
-    
-  }
-
-	var boxCoord = coords()
-	if (!play) {
-	play = true;
-	startPLay = now.getArmies()
-	}
-
-
- if (element.checked){
-	Armies++}
-else{
-	Armies--
-	element.form.Armies.value = army
-	};
-};
-
-function start(form) {
-	total = 0
-	play = false
-for (var i = 1; i <= 100; ++i) {
-	form.elements[i].checked = false
-   }
-
-}
-
-
-
-
-// End -->
-</SCRIPT>
-
+  <script type="text/javascript" src="/socket.io/socket.io.min.js"></script>
+  <script type="text/javascript" src="/js/paperwars.js"></script>
 </head>
-
 <body>
 
 <div id="list_of_rooms">
-    <h3>Please select to which room you want to connect:</h3>
-    <form id="form_for_list_of_rooms" onsubmit="if(typeof window.room_id != 'undefined') {$('#errors_for_list_of_rooms').hide(); socket.json.emit('connect', {room_id: window.room_id, country_code: geoip_country_code().toLowerCase(), country_name: geoip_country_name()}); jQuery.facebox.close();} else {$('#errors_for_list_of_rooms').show(); jQuery.facebox({ div: '#list_of_rooms' });}; return false;"></form></div>
+  <h3>Please select to which room you want to connect:</h3>
+  <form id="form_for_list_of_rooms" onsubmit="if(typeof window.room_id != 'undefined') {$('#errors_for_list_of_rooms').hide(); socket.json.emit('connect', {room_id: window.room_id, country_code: geoip_country_code().toLowerCase(), country_name: geoip_country_name()}); jQuery.facebox.close();} else {$('#errors_for_list_of_rooms').show(); jQuery.facebox({ div: '#list_of_rooms' });}; return false;"></form>
+</div>
 
-<CENTER><p>Paper wars</p></CENTER>
+<center><p>Paper wars</p></center>
 
-<CENTER><p>Place your armies</p></CENTER>
+<center><p>Place your armies</p></center>
 
+<center>
+  <form id="armies">
+    <p class="count">0</p>
+    <br>
 
-<CENTER><FORM id="playerOne">
-<INPUT TYPE="text" VALUE="10" NAME="Armies">
-('SIZE=10 onFocus="this.blur()"><BR>')
-("<HR SIZE=1 WIDTH=40%>")
+    <hr size="1" width="40%">
 
-<SCRIPT LANGUAGE="JavaScript">
+    <div class="inputs"></div>
 
-for (var i = 0; i < 10; ++i) {
-	for (var j = 0; j < 10; ++j) {
-		document.write('<INPUT TYPE="checkbox" onClick="display(this)" coords="'+i+','+j+'">')
-	}
-	document.write("<BR>")
-}
+    <hr size="1" width="40%">
+  </form>
+</center>
 
-document.write("<HR SIZE=1 WIDTH=40%>")
-document.write("</CENTER></FORM>")
-</SCRIPT>
+<center><p>Place your Bombs</p></center>
 
+<center>
+  <form id="bombs">
+    <p class="count">0</p>
+    <br>
 
-<CENTER><p>Place your Bombs</p></CENTER>
+    <hr size=1 width="40%">
 
-<SCRIPT LANGUAGE="JavaScript">
+    <div class="inputs"></div>
 
-document.write("<CENTER><FORM id=\"playerTwo\">")
-document.write('<INPUT TYPE="text" VALUE="20" NAME="Bombs" ');
-document.write('SIZE=10 onFocus="this.blur()"><BR>')
-document.write("<HR SIZE=1 WIDTH=40%>")
-
-for (var x = 0; x < 10; ++x) {
-	for (var y = 0; y < 10; ++y) {
-		document.write('<INPUT TYPE="checkbox" onClick="display(this)" data-coord="'+x+','+y+'">')
-	}
-	document.write("<BR>")
-}
-
-document.write("<HR SIZE=1 WIDTH=40%>")
-document.write('<INPUT TYPE="button" VALUE="Start A War" ');
-document.write('onClick="start(this.form)">')
-document.write("</CENTER></FORM>")
-
-</SCRIPT>
-
+    <hr size=1 width="40%">
+    <input id="start" type="button" value="Start A War" disabled>
+  </form>
+</center>
 
 </body>
-
-</hmtl>
+</html>
