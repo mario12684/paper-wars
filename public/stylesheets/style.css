@@ -6,3 +6,12 @@ body {
 a {
   color: #00B7FF;
 }
+
+#list_of_rooms {
+  position:absolute;
+  top:120px;
+  left:20px;
+  width:215px;
+  padding:5px;
+  border:1px solid green;
+}
